@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hangout World – Pixel Social Lobby</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen" class="screen">
+    <div class="card">
+      <h1>Hangout World</h1>
+      <p class="subtitle">Create your pixel self & chill with friends</p>
+      <div class="tabs">
+        <button id="tab-login" class="tab active">Login</button>
+        <button id="tab-register" class="tab">Register</button>
+      </div>
+      <form id="auth-form">
+        <input type="text" id="username" placeholder="Username" required minlength="2" maxlength="16" autocomplete="username" />
+        <input type="password" id="password" placeholder="Password" required minlength="4" autocomplete="current-password" />
+        <button type="submit" id="auth-btn">Login</button>
+      </form>
+      <p id="auth-error" class="error"></p>
+    </div>
+  </div>
+
+  <!-- Character Creator -->
+  <div id="editor-screen" class="screen hidden">
+    <div class="editor-layout">
+      <div class="editor-left">
+        <h2>Create Your Character</h2>
+        <label>Character Name <input type="text" id="char-name" maxlength="20" value="My Pixel" /></label>
+        <div class="frame-selector">
+          <button data-frame="idle" class="frame-btn active">Idle</button>
+          <button data-frame="walk1" class="frame-btn">Walk 1</button>
+          <button data-frame="walk2" class="frame-btn">Walk 2</button>
+          <button data-frame="jump" class="frame-btn">Jump</button>
+          <button data-frame="fall" class="frame-btn">Fall</button>
+          <button data-frame="sit" class="frame-btn">Sit</button>
+          <button data-frame="blink" class="frame-btn">Blink</button>
+        </div>
+        <div class="tools">
+          <input type="color" id="color-picker" value="#ff6b6b" title="Draw color" />
+          <button id="tool-pencil" class="tool active" title="Pencil">✏️</button>
+          <button id="tool-eraser" class="tool" title="Eraser">🧹</button>
+          <button id="tool-fill" class="tool" title="Fill">🪣</button>
+          <button id="clear-frame" class="tool" title="Clear frame">🗑️</button>
+          <button id="copy-from-idle" class="tool" title="Copy from Idle">📋 Idle</button>
+        </div>
+        <p class="hint">Click & drag to draw • Right-click or Eraser to erase</p>
+        <div class="preview-row">
+          <canvas id="preview-canvas" width="64" height="64"></canvas>
+          <div class="preview-label">Live Preview</div>
+        </div>
+        <button id="save-character" class="primary">Save & Enter Lobby</button>
+        <button id="skip-editor" class="secondary">Use Default & Enter</button>
+      </div>
+      <div class="editor-right">
+        <canvas id="pixel-canvas" width="320" height="320"></canvas>
+        <div class="palette">
+          <div class="swatch" data-color="#000000" style="background:#000"></div>
+          <div class="swatch" data-color="#ffffff" style="background:#fff"></div>
+          <div class="swatch" data-color="#ff6b6b" style="background:#ff6b6b"></div>
+          <div class="swatch" data-color="#4ecdc4" style="background:#4ecdc4"></div>
+          <div class="swatch" data-color="#45b7d1" style="background:#45b7d1"></div>
+          <div class="swatch" data-color="#96ceb4" style="background:#96ceb4"></div>
+          <div class="swatch" data-color="#ffeaa7" style="background:#ffeaa7"></div>
+          <div class="swatch" data-color="#dfe6e9" style="background:#dfe6e9"></div>
+          <div class="swatch" data-color="#2d3436" style="background:#2d3436"></div>
+          <div class="swatch" data-color="#6c5ce7" style="background:#6c5ce7"></div>
+          <div class="swatch" data-color="#fd79a8" style="background:#fd79a8"></div>
+          <div class="swatch" data-color="#00b894" style="background:#00b894"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Lobby -->
+  <div id="game-screen" class="screen hidden">
+    <canvas id="game-canvas"></canvas>
+    <div id="ui-overlay">
+      <div id="player-list"></div>
+      <div id="chat-box">
+        <div id="chat-messages"></div>
+        <form id="chat-form">
+          <input type="text" id="chat-input" placeholder="Type a message... (Enter)" maxlength="80" autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      <div id="controls-hint">
+        ← → Move • Space Jump • S Sit/Stand • Esc Menu
+      </div>
+    </div>
+  </div>
+
+  <script src="js/editor.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

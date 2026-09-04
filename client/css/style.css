@@ -1,0 +1,410 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f0f1a;
+  color: #e8e8f0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== Login ===== */
+.card {
+  background: #1a1a2e;
+  border: 2px solid #3a3a5c;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 360px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.card h1 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #888;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.6rem;
+  background: #252540;
+  border: none;
+  color: #aaa;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.tab.active {
+  background: #4ecdc4;
+  color: #0f0f1a;
+}
+
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#auth-form input {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #3a3a5c;
+  background: #12121f;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+#auth-form input:focus {
+  border-color: #4ecdc4;
+}
+
+#auth-btn {
+  margin-top: 0.5rem;
+  padding: 0.9rem;
+  background: linear-gradient(90deg, #ff6b6b, #ee5a5a);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+#auth-btn:hover {
+  transform: scale(1.02);
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+}
+
+/* ===== Editor ===== */
+.editor-layout {
+  display: flex;
+  gap: 2rem;
+  background: #1a1a2e;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 2px solid #3a3a5c;
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+.editor-left {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.editor-left h2 {
+  font-size: 1.3rem;
+  color: #4ecdc4;
+}
+
+.editor-left label {
+  font-size: 0.85rem;
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.editor-left input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #3a3a5c;
+  background: #12121f;
+  color: #fff;
+}
+
+.frame-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.frame-btn {
+  padding: 0.45rem;
+  background: #252540;
+  border: 1px solid #3a3a5c;
+  color: #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.frame-btn.active {
+  background: #4ecdc4;
+  color: #0f0f1a;
+  font-weight: 700;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.tools input[type="color"] {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.tool {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #3a3a5c;
+  background: #252540;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.tool.active {
+  background: #6c5ce7;
+  border-color: #a29bfe;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.preview-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#preview-canvas {
+  image-rendering: pixelated;
+  border: 2px solid #3a3a5c;
+  background: #0a0a12;
+  border-radius: 4px;
+}
+
+.preview-label {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.primary, .secondary {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.primary {
+  background: linear-gradient(90deg, #4ecdc4, #45b7d1);
+  color: #0f0f1a;
+}
+
+.secondary {
+  background: #252540;
+  color: #aaa;
+  border: 1px solid #3a3a5c;
+}
+
+.editor-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#pixel-canvas {
+  image-rendering: pixelated;
+  border: 3px solid #3a3a5c;
+  background: #0a0a12;
+  cursor: crosshair;
+  border-radius: 4px;
+}
+
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 320px;
+  justify-content: center;
+}
+
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 2px solid #3a3a5c;
+  cursor: pointer;
+}
+
+.swatch:hover {
+  border-color: #fff;
+}
+
+/* ===== Game ===== */
+#game-screen {
+  background: #0a0a12;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+#ui-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#player-list {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(15,15,26,0.85);
+  border: 1px solid #3a3a5c;
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  max-width: 180px;
+  pointer-events: auto;
+}
+
+#player-list h3 {
+  font-size: 0.75rem;
+  color: #4ecdc4;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#chat-box {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 320px;
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(15,15,26,0.9);
+  border: 1px solid #3a3a5c;
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-height: 160px;
+}
+
+.chat-line {
+  word-break: break-word;
+}
+
+.chat-line .name {
+  color: #4ecdc4;
+  font-weight: 600;
+}
+
+#chat-form {
+  display: flex;
+  border-top: 1px solid #3a3a5c;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+#chat-form button {
+  padding: 0.6rem 1rem;
+  background: #4ecdc4;
+  border: none;
+  color: #0f0f1a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#controls-hint {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(15,15,26,0.8);
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #888;
+  border: 1px solid #2a2a40;
+}
+
+@media (max-width: 700px) {
+  .editor-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .editor-left {
+    width: 100%;
+  }
+  #chat-box {
+    width: calc(100% - 32px);
+  }
+}
